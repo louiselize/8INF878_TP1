@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yoann\\Documents\\Perso\\1_Etudes\\UQAC\\Cours\\Intelligence artificielle\\Projet1\\8INF878_TP1\\8INF878_TP1.csproj": {}
+    "C:\\Users\\louis\\Documents\\UTC\\UQAC\\8INF878\\TP1\\8INF878_TP1\\8INF878_TP1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yoann\\Documents\\Perso\\1_Etudes\\UQAC\\Cours\\Intelligence artificielle\\Projet1\\8INF878_TP1\\8INF878_TP1.csproj": {
+    "C:\\Users\\louis\\Documents\\UTC\\UQAC\\8INF878\\TP1\\8INF878_TP1\\8INF878_TP1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yoann\\Documents\\Perso\\1_Etudes\\UQAC\\Cours\\Intelligence artificielle\\Projet1\\8INF878_TP1\\8INF878_TP1.csproj",
+        "projectUniqueName": "C:\\Users\\louis\\Documents\\UTC\\UQAC\\8INF878\\TP1\\8INF878_TP1\\8INF878_TP1.csproj",
         "projectName": "8INF878_TP1",
-        "projectPath": "C:\\Users\\yoann\\Documents\\Perso\\1_Etudes\\UQAC\\Cours\\Intelligence artificielle\\Projet1\\8INF878_TP1\\8INF878_TP1.csproj",
-        "packagesPath": "C:\\Users\\yoann\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yoann\\Documents\\Perso\\1_Etudes\\UQAC\\Cours\\Intelligence artificielle\\Projet1\\8INF878_TP1\\obj\\",
+        "projectPath": "C:\\Users\\louis\\Documents\\UTC\\UQAC\\8INF878\\TP1\\8INF878_TP1\\8INF878_TP1.csproj",
+        "packagesPath": "C:\\Users\\louis\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\louis\\Documents\\UTC\\UQAC\\8INF878\\TP1\\8INF878_TP1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\yoann\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\louis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
