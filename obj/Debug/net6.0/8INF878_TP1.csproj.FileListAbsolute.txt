@@ -1,0 +1,15 @@
+C:\Users\louis\Documents\UTC\UQAC\8INF878\TP1\8INF878_TP1\bin\Debug\net6.0\8INF878_TP1.exe
+C:\Users\louis\Documents\UTC\UQAC\8INF878\TP1\8INF878_TP1\bin\Debug\net6.0\8INF878_TP1.deps.json
+C:\Users\louis\Documents\UTC\UQAC\8INF878\TP1\8INF878_TP1\bin\Debug\net6.0\8INF878_TP1.runtimeconfig.json
+C:\Users\louis\Documents\UTC\UQAC\8INF878\TP1\8INF878_TP1\bin\Debug\net6.0\8INF878_TP1.dll
+C:\Users\louis\Documents\UTC\UQAC\8INF878\TP1\8INF878_TP1\bin\Debug\net6.0\8INF878_TP1.pdb
+C:\Users\louis\Documents\UTC\UQAC\8INF878\TP1\8INF878_TP1\obj\Debug\net6.0\8INF878_TP1.csproj.AssemblyReference.cache
+C:\Users\louis\Documents\UTC\UQAC\8INF878\TP1\8INF878_TP1\obj\Debug\net6.0\8INF878_TP1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\louis\Documents\UTC\UQAC\8INF878\TP1\8INF878_TP1\obj\Debug\net6.0\8INF878_TP1.AssemblyInfoInputs.cache
+C:\Users\louis\Documents\UTC\UQAC\8INF878\TP1\8INF878_TP1\obj\Debug\net6.0\8INF878_TP1.AssemblyInfo.cs
+C:\Users\louis\Documents\UTC\UQAC\8INF878\TP1\8INF878_TP1\obj\Debug\net6.0\8INF878_TP1.csproj.CoreCompileInputs.cache
+C:\Users\louis\Documents\UTC\UQAC\8INF878\TP1\8INF878_TP1\obj\Debug\net6.0\8INF878_TP1.dll
+C:\Users\louis\Documents\UTC\UQAC\8INF878\TP1\8INF878_TP1\obj\Debug\net6.0\refint\8INF878_TP1.dll
+C:\Users\louis\Documents\UTC\UQAC\8INF878\TP1\8INF878_TP1\obj\Debug\net6.0\8INF878_TP1.pdb
+C:\Users\louis\Documents\UTC\UQAC\8INF878\TP1\8INF878_TP1\obj\Debug\net6.0\8INF878_TP1.genruntimeconfig.cache
+C:\Users\louis\Documents\UTC\UQAC\8INF878\TP1\8INF878_TP1\obj\Debug\net6.0\ref\8INF878_TP1.dll
