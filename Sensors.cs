@@ -1,4 +1,5 @@
-class Capteur
+
+class Sensors
     {
         
     }
