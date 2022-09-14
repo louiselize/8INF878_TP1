@@ -27,7 +27,7 @@ namespace ThreadingDemo
             t2.Start();
             t3.Start();
             Console.WriteLine("Main Thread Ended");
-            Console.Read();
+            //Console.Read();
         }
         static void Method1()
         {
@@ -46,9 +46,9 @@ namespace ThreadingDemo
                 Console.WriteLine("Method2 :" + i);
                 if (i == 3)
                 {
-                    Console.WriteLine("Performing the Database Operation Started");
+                    Console.WriteLine("Performing the Database Operation Started ");
                     //Sleep for 10 seconds
-                    Thread.Sleep(10000);
+                    //Thread.Sleep(10000);
                     Console.WriteLine("Performing the Database Operation Completed");
                 }
             }
