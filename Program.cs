@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System;
 using static Environment;
+using static Items;
 
 namespace ThreadingDemo
 {
@@ -11,36 +12,40 @@ namespace ThreadingDemo
         static void Main(string[] args)
         {
             Environment ev = new Environment();
-            ev.displayMap();
+            //ev.displayMap();
 
             Console.WriteLine("Main Thread Started");
             //Creating Threads
-            Thread t1 = new Thread(Method1)
+            Thread t1 = new Thread(EnvironmentMethod)
             {
                 Name = "Thread_Environment"
             };
-            Thread t2 = new Thread(Method2)
+            Thread t2 = new Thread(AgentMethod)
             {
                 Name = "Thread_Agent"
             };
 
             //Executing the methods
-            t1.Start();
+            t1.Start(ev);
             t2.Start();
             Console.WriteLine("Main Thread Ended");
             //Console.Read();
         }
-        static void Method1()
+        static void EnvironmentMethod(Object environment)
         {
-            /*
+            Environment ev = (Environment) environment;
             Console.WriteLine("Method1 Started using " + Thread.CurrentThread.Name);
-            for (int i = 1; i <= 5; i++)
+            while (true)
             {
-                Console.WriteLine("Method1 :" + i);
+                ev.generateItems(Items.Dirt);
+                Thread.Sleep(10000);
+                ev.generateItems(Items.Jewel);
+                Thread.Sleep(10000);
+
             }
-            Console.WriteLine("Method1 Ended using " + Thread.CurrentThread.Name);*/
+            Console.WriteLine("Method1 Ended using " + Thread.CurrentThread.Name);
         }
-        static void Method2()
+        static void AgentMethod()
         {
             /*Console.WriteLine("Method2 Started using " + Thread.CurrentThread.Name);
             for (int i = 1; i <= 5; i++)

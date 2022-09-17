@@ -15,8 +15,8 @@ vous de décider des probabilités. Une case peut contenir à la fois de la pous
 
 public static class Items {
     //Apparemment enum ça n existe pas en C#
-    public static readonly string Dirt = "DIRT";
-    public static readonly string Jewel = "JEWEL";
+    public const string Dirt = "DIRT";
+    public const string Jewel = "JEWEL";
 }
 
 public class Environment
@@ -57,5 +57,24 @@ public class Environment
                 }
                     
             }
+        }
+
+        //Displaying the Map
+        public Dictionary<String, bool>[][] generateItems(String item){
+            
+            switch (item) 
+            {
+                case Items.Dirt:
+                    Console.WriteLine("Dirt");
+                    break;
+                case Items.Jewel:
+                    Console.WriteLine("Jewel");
+                    break;
+                default:
+                    Console.WriteLine("Not in enum");
+                    break;
+            }
+
+            return map;
         }
     }
