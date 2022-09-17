@@ -12,7 +12,6 @@ namespace ThreadingDemo
         static void Main(string[] args)
         {
             Environment ev = new Environment();
-            //ev.displayMap();
 
             Console.WriteLine("Main Thread Started");
             //Creating Threads
@@ -38,9 +37,9 @@ namespace ThreadingDemo
             while (true)
             {
                 ev.generateItems(Items.Dirt);
-                Thread.Sleep(10000);
+                Thread.Sleep(5000);
                 ev.generateItems(Items.Jewel);
-                Thread.Sleep(10000);
+                Thread.Sleep(5000);
 
             }
             Console.WriteLine("Method1 Ended using " + Thread.CurrentThread.Name);

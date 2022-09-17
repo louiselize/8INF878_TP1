@@ -21,8 +21,8 @@ public static class Items {
 
 public class Environment
     {
-        const int NUMBER_ROWS = 5;
-        const int NUMBER_COLUMNS = 5;
+        const int NUMBER_ROWS = 2;
+        const int NUMBER_COLUMNS = 2;
 
         private Dictionary<String, bool>[][] map = new Dictionary<String, bool>[NUMBER_ROWS][];
 
@@ -51,28 +51,37 @@ public class Environment
             {
                 for (int j = 0; j < NUMBER_COLUMNS; ++j)
                 {
-                    foreach(var kvp in map[i][j])
-                        Console.WriteLine("Row: " + i +" Column: " + j +" = " + kvp);
+                    foreach(var item in map[i][j])
+                        Console.WriteLine("Row: " + i +" Column: " + j +" = " + item);
                     Console.WriteLine();    
                 }
                     
             }
         }
 
-        //Displaying the Map
+        //Generate item on map
         public Dictionary<String, bool>[][] generateItems(String item){
-            
-            switch (item) 
-            {
-                case Items.Dirt:
-                    Console.WriteLine("Dirt");
-                    break;
-                case Items.Jewel:
-                    Console.WriteLine("Jewel");
-                    break;
-                default:
-                    Console.WriteLine("Not in enum");
-                    break;
+
+            Random rd = new Random();
+            bool cellNotChosen = true;
+            int i;
+            int j;
+
+            while(cellNotChosen){
+
+                i = rd.Next(NUMBER_ROWS);
+                j = rd.Next(NUMBER_COLUMNS);
+           
+                bool value;
+                if(map[i][j].TryGetValue(item, out value)){
+                if(!value){
+                        map[i][j][item] = true;
+                        cellNotChosen = false;
+                        Console.WriteLine(item + " case " + i + " " + j);
+                        displayMap();
+                    }
+                }
+                
             }
 
             return map;
