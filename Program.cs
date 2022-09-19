@@ -26,7 +26,7 @@ namespace ThreadingDemo
 
             //Executing the methods
             t1.Start(ev);
-            t2.Start();
+            t2.Start(ev);
             Console.WriteLine("Main Thread Ended");
             //Console.Read();
         }
@@ -44,8 +44,14 @@ namespace ThreadingDemo
             }
             Console.WriteLine("Method1 Ended using " + Thread.CurrentThread.Name);
         }
-        static void AgentMethod()
+        static void AgentMethod(Object environment)
         {
+            Environment ev = (Environment) environment;
+             while (true)
+            {
+            
+
+            }
             /*Console.WriteLine("Method2 Started using " + Thread.CurrentThread.Name);
             for (int i = 1; i <= 5; i++)
             {
