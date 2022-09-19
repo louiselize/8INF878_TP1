@@ -23,6 +23,8 @@ public class Environment
     {
         const int NUMBER_ROWS = 2;
         const int NUMBER_COLUMNS = 2;
+        const double DIRT_PERCENTAGE  = 0.8;
+        //const double JEWEL_PERCENTAGE = 1 - DIRT_PERCENTAGE;
 
         private Dictionary<String, bool>[][] map = new Dictionary<String, bool>[NUMBER_ROWS][];
 
@@ -59,31 +61,47 @@ public class Environment
             }
         }
 
+        //Choose which items to generate
+        public void generate(){
+            Random rd = new Random();
+            bool cellChosen = false;
+            
+            while(!cellChosen){
+                double i = rd.Next(100);
+                if(i<=DIRT_PERCENTAGE*100){
+                    cellChosen = generateItems(Items.Dirt);
+                }
+
+                else{
+                    cellChosen = generateItems(Items.Jewel);
+                }
+            }
+           
+        }
+
         //Generate item on map
-        public Dictionary<String, bool>[][] generateItems(String item){
+        public bool generateItems(String item){
 
             Random rd = new Random();
-            bool cellNotChosen = true;
             int i;
             int j;
 
-            while(cellNotChosen){
-
-                i = rd.Next(NUMBER_ROWS);
-                j = rd.Next(NUMBER_COLUMNS);
+            i = rd.Next(NUMBER_ROWS);
+            j = rd.Next(NUMBER_COLUMNS);
            
-                bool value;
-                if(map[i][j].TryGetValue(item, out value)){
+            bool value;
+            if(map[i][j].TryGetValue(item, out value)){
                 if(!value){
                         map[i][j][item] = true;
-                        cellNotChosen = false;
                         Console.WriteLine(item + " case " + i + " " + j);
                         displayMap();
+                        return true;
                     }
-                }
-                
             }
 
-            return map;
+            return false;
+                
         }
-    }
+
+    
+}

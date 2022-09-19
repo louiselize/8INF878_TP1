@@ -36,9 +36,8 @@ namespace ThreadingDemo
             Console.WriteLine("Method1 Started using " + Thread.CurrentThread.Name);
             while (true)
             {
-                ev.generateItems(Items.Dirt);
-                Thread.Sleep(5000);
-                ev.generateItems(Items.Jewel);
+                
+                ev.generate();
                 Thread.Sleep(5000);
 
             }
@@ -49,9 +48,12 @@ namespace ThreadingDemo
             Environment ev = (Environment) environment;
              while (true)
             {
-            
-
+                //ObserveEnvironmentWithAllMySensors()
+                //UpdateMyState()
+                //ChooseAnAction()
+                //justDoIt()
             }
+            
             /*Console.WriteLine("Method2 Started using " + Thread.CurrentThread.Name);
             for (int i = 1; i <= 5; i++)
             {
