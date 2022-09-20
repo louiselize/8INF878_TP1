@@ -81,7 +81,7 @@ public class Environment
                         displayMap();
                     }
                 }
-                
+   
             }
 
             return map;
