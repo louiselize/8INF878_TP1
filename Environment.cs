@@ -21,8 +21,8 @@ public static class Items {
 
 public class Environment
     {
-        const int NUMBER_ROWS = 2;
-        const int NUMBER_COLUMNS = 2;
+        const int NUMBER_ROWS = 5;
+        const int NUMBER_COLUMNS = 5;
         const double DIRT_PERCENTAGE  = 0.8;
         //const double JEWEL_PERCENTAGE = 1 - DIRT_PERCENTAGE;
 
@@ -49,16 +49,56 @@ public class Environment
 
         //Displaying the Map
         public void displayMap(){
+            string row;
+            bool isDirt;
+            bool isJewel;
+
             for (int i = 0; i < NUMBER_ROWS; ++i)
             {
+                row ="";
+
                 for (int j = 0; j < NUMBER_COLUMNS; ++j)
                 {
-                    foreach(var item in map[i][j])
-                        Console.WriteLine("Row: " + i +" Column: " + j +" = " + item);
-                    Console.WriteLine();    
-                }
+                        
+                    isDirt = false;
+                    isJewel = false;
+
+                    foreach(var kvp in map[i][j]){
+                        
+                        if(kvp.Key == Items.Dirt && map[i][j][Items.Dirt]){
+                            isDirt = true;
+                        }
+                        if(kvp.Key == Items.Jewel && map[i][j][Items.Jewel]){
+                            isJewel = true;
+                        }
+                    }
+
+                    if(isDirt && isJewel){
+                        row += "B ";
+                    }
+
+                    else if (isDirt){
+                        row += "D ";
+                    }
                     
+                    else if (isJewel){
+                        row += "J ";
+                    }
+                    //prevoir robot quand on saura comment on l'instancie sur la map
+
+                    else {
+                        row += "E ";
+                    }
+
+                }     
+
+                Console.WriteLine(row);
+
             }
+            
+            Console.WriteLine();    
+            Console.WriteLine();    
+
         }
 
         //Choose which items to generate
