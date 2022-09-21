@@ -26,7 +26,7 @@ namespace ThreadingDemo
 
             //Executing the methods
             t1.Start(ev);
-            t2.Start();
+            t2.Start(ev);
             Console.WriteLine("Main Thread Ended");
             //Console.Read();
         }
@@ -36,16 +36,36 @@ namespace ThreadingDemo
             Console.WriteLine("Method1 Started using " + Thread.CurrentThread.Name);
             while (true)
             {
-                ev.generateItems(Items.Dirt);
-                Thread.Sleep(5000);
-                ev.generateItems(Items.Jewel);
+                
+                ev.Generate();
+                ev.Suck(1,0);
+                ev.Suck(2,0);
+                ev.Suck(3,0);
+                ev.Suck(4,0);
+                Console.WriteLine("Perf : " + ev.GetPerformance()); 
+                Console.WriteLine();  
+                Console.WriteLine();      
+
                 Thread.Sleep(5000);
 
             }
             Console.WriteLine("Method1 Ended using " + Thread.CurrentThread.Name);
         }
-        static void AgentMethod()
+        static void AgentMethod(Object environment)
         {
+            Environment ev = (Environment) environment;
+            
+            Dictionary<String, bool>[][] map;
+             while (true)
+            {
+                map = ev.GetMap(); // Agent is observing environment;
+
+                //ObserveEnvironmentWithAllMySensors()
+                //UpdateMyState()
+                //ChooseAnAction()
+                //justDoIt()
+            }
+            
             /*Console.WriteLine("Method2 Started using " + Thread.CurrentThread.Name);
             for (int i = 1; i <= 5; i++)
             {
