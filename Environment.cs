@@ -17,6 +17,7 @@ public static class Items {
     //Apparemment enum ça n existe pas en C#
     public const string Dirt = "DIRT";
     public const string Jewel = "JEWEL";
+    public const string Robot = "ROBOT";
 }
 
 public class Environment
@@ -24,7 +25,11 @@ public class Environment
         const int NUMBER_ROWS = 5;
         const int NUMBER_COLUMNS = 5;
         const double DIRT_PERCENTAGE  = 0.8;
-        //const double JEWEL_PERCENTAGE = 1 - DIRT_PERCENTAGE;
+
+        private int robotPosX = 0;
+        private int robotPosY = 0;
+        private int performance = 0;
+        
 
         private Dictionary<String, bool>[][] map = new Dictionary<String, bool>[NUMBER_ROWS][];
 
@@ -38,17 +43,18 @@ public class Environment
                     {
                         {Items.Dirt, false},
                         {Items.Jewel, false},
+                        {Items.Robot, false},
+
                     };
                 }
+                
+                map[robotPosX][robotPosY][Items.Robot] = true;
             }
         }
 
-        public Dictionary<String, bool>[][] getMap(){
-            return map;
-        }
 
         //Displaying the Map
-        public void displayMap(){
+        public void DisplayMap(){
             string row;
             bool isDirt;
             bool isJewel;
@@ -73,7 +79,11 @@ public class Environment
                         }
                     }
 
-                    if(isDirt && isJewel){
+                    if(i==robotPosX && j==robotPosY){
+                        row += "R ";
+                    }
+
+                    else if(isDirt && isJewel){
                         row += "B ";
                     }
 
@@ -84,7 +94,6 @@ public class Environment
                     else if (isJewel){
                         row += "J ";
                     }
-                    //prevoir robot quand on saura comment on l'instancie sur la map
 
                     else {
                         row += "E ";
@@ -96,31 +105,28 @@ public class Environment
 
             }
             
-            Console.WriteLine();    
-            Console.WriteLine();    
-
         }
 
-        //Choose which items to generate
-        public void generate(){
+        //Choose which item to generate
+        public void Generate(){
             Random rd = new Random();
             bool cellChosen = false;
             
             while(!cellChosen){
                 double i = rd.Next(100);
                 if(i<=DIRT_PERCENTAGE*100){
-                    cellChosen = generateItems(Items.Dirt);
+                    cellChosen = GenerateItems(Items.Dirt);
                 }
 
                 else{
-                    cellChosen = generateItems(Items.Jewel);
+                    cellChosen = GenerateItems(Items.Jewel);
                 }
             }
            
         }
 
         //Generate item on map
-        public bool generateItems(String item){
+        public bool GenerateItems(String item){
 
             Random rd = new Random();
             int i;
@@ -134,7 +140,7 @@ public class Environment
                 if(!value){
                         map[i][j][item] = true;
                         Console.WriteLine(item + " case " + i + " " + j);
-                        displayMap();
+                        DisplayMap();
                         return true;
                     }
             }
@@ -142,6 +148,65 @@ public class Environment
             return false;
                 
         }
+
+        //Suck : +1 if it was Dirt, -1 if it was empty, -2 if it sucks Jewel
+        public void Suck(int row, int column){
+            foreach(var kvp in map[row][column]){
+                    
+                //if Robot sucks Jewel, decrease performance 
+                if(kvp.Key == Items.Jewel && map[row][column][kvp.Key]){
+                    map[row][column][kvp.Key] = false;
+                    performance--;
+                }
+
+                //if Robot sucks Dirt, increase performance 
+                else if(kvp.Key == Items.Dirt && map[row][column][kvp.Key]){
+                    performance+=2;
+                    map[row][column][kvp.Key] = false;
+                }
+            } 
+
+            performance --; // if empty 
+        }
+
+        //Collect (similar to suck, trop fatiguée pour ajd)
+        public void Collect(int row, int column){
+                   
+        }
+
+
+        public Dictionary<String, bool>[][] GetMap(){
+            return map;
+        }
+
+        public void SetMap(Dictionary<String, bool>[][] map){
+            map = map;
+        }
+
+        public int GetRobotXPosition(){
+            return robotPosX;
+        }
+
+        public void SetRobotXPosition(int X){
+            robotPosX = X;
+        }
+
+        public int GetRobotYPosition(){
+            return robotPosY;
+        }
+
+        public void SetRobotYPosition(int Y){
+            robotPosY = Y;
+        }
+
+        public int GetPerformance(){
+            return performance;
+        }
+
+        public void SetPerformance(int performance){
+            performance = performance;
+        }
+        
 
     
 }

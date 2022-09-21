@@ -37,7 +37,15 @@ namespace ThreadingDemo
             while (true)
             {
                 
-                ev.generate();
+                ev.Generate();
+                ev.Suck(1,0);
+                ev.Suck(2,0);
+                ev.Suck(3,0);
+                ev.Suck(4,0);
+                Console.WriteLine("Perf : " + ev.GetPerformance()); 
+                Console.WriteLine();  
+                Console.WriteLine();      
+
                 Thread.Sleep(5000);
 
             }
@@ -46,8 +54,12 @@ namespace ThreadingDemo
         static void AgentMethod(Object environment)
         {
             Environment ev = (Environment) environment;
+            
+            Dictionary<String, bool>[][] map;
              while (true)
             {
+                map = ev.GetMap(); // Agent is observing environment;
+
                 //ObserveEnvironmentWithAllMySensors()
                 //UpdateMyState()
                 //ChooseAnAction()
