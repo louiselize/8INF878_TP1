@@ -39,12 +39,13 @@ namespace ThreadingDemo
             {
                 
                 ev.Generate();
-                //ev.Suck(1,0);
-                //ev.Suck(2,0);
-                //ev.Suck(3,0);
-                //ev.Suck(4,0);
+                /* ------ TO TEST SUCK AND COLLECT ------
+                ev.Suck(1,0);
+                ev.Suck(2,0);
+                ev.Suck(3,0);
+                ev.Suck(4,0);
                 
-                /*ev.Collect(1,0);
+                ev.Collect(1,0);
                 ev.Collect(2,0);
                 ev.Collect(3,0);
                 ev.Collect(4,0);
@@ -65,17 +66,18 @@ namespace ThreadingDemo
         static void AgentMethod(Object environment)
         {
             Environment ev = (Environment) environment;
-            Map map;
             Sensors sensor = new Sensors();
+            Map map;
 
             while (true)
             {
-                map = ev.GetMap(); // Agent is observing environment;
+                
                 Thread.Sleep(5000);
-                sensor.Observe(map);
+                map = ev.GetMap();
+                sensor.Observe(map); // Agent is observing environment;
                 
                 /*
-                TO TEST CELL TO COLLECT AND SUCK
+                -------- TO TEST CELL TO COLLECT AND SUCK ---------
                 Console.WriteLine("to collect");
                 foreach(int [] element in sensor.cellsToCollect){
                     Console.WriteLine(element[0] + " " + element[1]);
