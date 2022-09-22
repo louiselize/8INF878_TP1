@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System;
 using static Environment;
+using static Map;
 using static Items;
 
 namespace ThreadingDemo
@@ -64,9 +65,9 @@ namespace ThreadingDemo
         static void AgentMethod(Object environment)
         {
             Environment ev = (Environment) environment;
-            
-            Dictionary<String, bool>[][] map;
-             while (true)
+            Map map;
+
+            while (true)
             {
                 map = ev.GetMap(); // Agent is observing environment;
 

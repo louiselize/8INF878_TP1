@@ -31,82 +31,14 @@ public class Environment
         private int performance = 0;
         
 
-        private Dictionary<String, bool>[][] map = new Dictionary<String, bool>[NUMBER_ROWS][];
+        private Map map;
 
         public Environment(){
-            //Map initialisation
-            for (int i = 0; i < NUMBER_ROWS; ++i)
-            {
-                map[i] = new Dictionary<String, bool>[NUMBER_COLUMNS];
-                for (int j = 0; j < NUMBER_COLUMNS; ++j){
-                    map[i][j] = new Dictionary<String, bool>
-                    {
-                        {Items.Dirt, false},
-                        {Items.Jewel, false},
-                        {Items.Robot, false},
-
-                    };
-                }
-                
-                map[robotPosX][robotPosY][Items.Robot] = true;
-            }
+            map = new Map(NUMBER_ROWS, NUMBER_COLUMNS, robotPosX, robotPosY);
         }
 
 
-        //Displaying the Map
-        public void DisplayMap(){
-            string row;
-            bool isDirt;
-            bool isJewel;
-
-            for (int i = 0; i < NUMBER_ROWS; ++i)
-            {
-                row ="";
-
-                for (int j = 0; j < NUMBER_COLUMNS; ++j)
-                {
-                        
-                    isDirt = false;
-                    isJewel = false;
-
-                    foreach(var kvp in map[i][j]){
-                        
-                        if(kvp.Key == Items.Dirt && map[i][j][Items.Dirt]){
-                            isDirt = true;
-                        }
-                        if(kvp.Key == Items.Jewel && map[i][j][Items.Jewel]){
-                            isJewel = true;
-                        }
-                    }
-
-                    if(i==robotPosX && j==robotPosY){
-                        row += "R ";
-                    }
-
-                    else if(isDirt && isJewel){
-                        row += "B ";
-                    }
-
-                    else if (isDirt){
-                        row += "D ";
-                    }
-                    
-                    else if (isJewel){
-                        row += "J ";
-                    }
-
-                    else {
-                        row += "E ";
-                    }
-
-                }     
-
-                Console.WriteLine(row);
-
-            }
-            
-        }
-
+        
         //Choose which item to generate
         public void Generate(){
             Random rd = new Random();
@@ -136,66 +68,24 @@ public class Environment
             j = rd.Next(NUMBER_COLUMNS);
            
             bool value;
-            if(map[i][j].TryGetValue(item, out value)){
+            if(map.GetCell(i,j).TryGetValue(item, out value)){
                 if(!value){
-                        map[i][j][item] = true;
+                        map.SetMap(i,j,item,true);
                         Console.WriteLine(item + " case " + i + " " + j);
-                        DisplayMap();
+                        map.DisplayMap();
                         return true;
                     }
                 }
    
-            
-
             return false;
                 
         }
 
-        //Suck : +1 if it was Dirt, -1 if it was empty, -2 if it sucks Jewel
-        public void Suck(int row, int column){
-            foreach(var kvp in map[row][column]){
-                    
-                //if Robot sucks Jewel, decrease performance 
-                if(kvp.Key == Items.Jewel && map[row][column][kvp.Key]){
-                    map[row][column][kvp.Key] = false;
-                    performance--;
-                }
-
-                //if Robot sucks Dirt, increase performance 
-                else if(kvp.Key == Items.Dirt && map[row][column][kvp.Key]){
-                    performance+=2;
-                    map[row][column][kvp.Key] = false;
-                }
-            } 
-
-            performance --; // if empty 
-        }
-
-        //Collect, +1 if it was Jewel, else -1
-        public void Collect(int row, int column){
-            foreach(var kvp in map[row][column]){
-                    
-                //if Robot collect Jewel, increase performance 
-                if(kvp.Key == Items.Jewel && map[row][column][kvp.Key]){
-                    performance+=2;
-                    map[row][column][kvp.Key] = false;
-
-                }
-            } 
-
-            performance --;
-                   
-        }
-
-
-        public Dictionary<String, bool>[][] GetMap(){
+        public Map GetMap(){
             return map;
         }
 
-        public void SetMap(Dictionary<String, bool>[][] map){
-            map = map;
-        }
-
+        
         public int GetRobotXPosition(){
             return robotPosX;
         }
