@@ -143,12 +143,9 @@ public class Environment
                         DisplayMap();
                         return true;
                     }
-<<<<<<< HEAD
                 }
    
-=======
->>>>>>> aabf21473e43621764be2c8d522bbe02a4fc980c
-            }
+            
 
             return false;
                 
