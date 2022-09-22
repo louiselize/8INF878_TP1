@@ -38,10 +38,20 @@ namespace ThreadingDemo
             {
                 
                 ev.Generate();
-                ev.Suck(1,0);
-                ev.Suck(2,0);
-                ev.Suck(3,0);
-                ev.Suck(4,0);
+                //ev.Suck(1,0);
+                //ev.Suck(2,0);
+                //ev.Suck(3,0);
+                //ev.Suck(4,0);
+                
+                /*ev.Collect(1,0);
+                ev.Collect(2,0);
+                ev.Collect(3,0);
+                ev.Collect(4,0);
+                ev.Collect(1,1);
+                ev.Collect(0,1);
+                ev.Collect(2,1);
+                ev.Collect(3,1);
+                ev.Collect(4,1);*/
                 Console.WriteLine("Perf : " + ev.GetPerformance()); 
                 Console.WriteLine();  
                 Console.WriteLine();      

@@ -24,7 +24,7 @@ public class Environment
     {
         const int NUMBER_ROWS = 5;
         const int NUMBER_COLUMNS = 5;
-        const double DIRT_PERCENTAGE  = 0.8;
+        const double DIRT_PERCENTAGE  = 0.1;
 
         private int robotPosX = 0;
         private int robotPosY = 0;
@@ -171,8 +171,19 @@ public class Environment
             performance --; // if empty 
         }
 
-        //Collect (similar to suck, trop fatiguée pour ajd)
+        //Collect, +1 if it was Jewel, else -1
         public void Collect(int row, int column){
+            foreach(var kvp in map[row][column]){
+                    
+                //if Robot collect Jewel, increase performance 
+                if(kvp.Key == Items.Jewel && map[row][column][kvp.Key]){
+                    performance+=2;
+                    map[row][column][kvp.Key] = false;
+
+                }
+            } 
+
+            performance --;
                    
         }
 
