@@ -66,7 +66,7 @@ namespace ThreadingDemo
         static void AgentMethod(Object environment)
         {
             Environment ev = (Environment) environment;
-            Sensors sensor = new Sensors();
+            Agent agent = new Agent();
             Map map;
 
             while (true)
@@ -74,7 +74,7 @@ namespace ThreadingDemo
                 
                 Thread.Sleep(5000);
                 map = ev.GetMap();
-                sensor.Observe(map); // Agent is observing environment;
+                agent.GetSensor().Observe(map); // Agent is observing environment;
                 
                 /*
                 -------- TO TEST CELL TO COLLECT AND SUCK ---------

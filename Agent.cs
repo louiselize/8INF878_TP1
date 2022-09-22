@@ -17,5 +17,14 @@ l’idée de base vue en cours (voir pseudo-code simple ci-dessous).
 */
 class Agent
     {
-        
+        private Sensors sensor;
+
+        public Agent(){
+            sensor = new Sensors();
+        }
+
+        public Sensors GetSensor(){
+            return sensor;
+        }
+
     }

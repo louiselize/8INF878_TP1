@@ -25,7 +25,7 @@ public class Environment
         const int NUMBER_ROWS = 5;
         const int NUMBER_COLUMNS = 5;
         const double DIRT_PERCENTAGE  = 0.5;
-
+        //jsp trop si on met la pos du robot ici?
         private int robotPosX = 0;
         private int robotPosY = 0;
         private int performance = 0;
