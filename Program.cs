@@ -66,10 +66,25 @@ namespace ThreadingDemo
         {
             Environment ev = (Environment) environment;
             Map map;
+            Sensors sensor = new Sensors();
 
             while (true)
             {
                 map = ev.GetMap(); // Agent is observing environment;
+                Thread.Sleep(5000);
+                sensor.Observe(map);
+                
+                /*
+                TO TEST CELL TO COLLECT AND SUCK
+                Console.WriteLine("to collect");
+                foreach(int [] element in sensor.cellsToCollect){
+                    Console.WriteLine(element[0] + " " + element[1]);
+                }
+
+                Console.WriteLine("to suck");
+                foreach(int [] element in sensor.cellsToSuck){
+                    Console.WriteLine(element[0] + " " + element[1]);
+                }*/
 
                 //ObserveEnvironmentWithAllMySensors()
                 //UpdateMyState()

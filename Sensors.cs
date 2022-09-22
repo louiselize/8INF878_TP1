@@ -1,51 +1,40 @@
-// using System;
+using System.Collections;
 
-//     enum Case
-//         {
-//             Vide = 0,
-//             Jewel = 1,
-//             Dirt = 2
-//         }
 
-//     public class Sensors  
-//     {  
-        
-//         public static void Main(string[] args)  
-//         {  
-                                
-//             int[,] matrice=new int[5,5];//declaration of 2D array  
+public class Sensors  
+     {  
+       public ArrayList cellsToSuck;
+       public ArrayList cellsToCollect;
+
+       public Sensors(){
+       }
+
+        public void Observe(Map map){
+            Dictionary<String, bool>[][] board = map.GetMap();
             
-//             int jewel = Convert.ToInt32(Case.Jewel);
-//             int vide = Convert.ToInt32(Case.Vide);
-//             int dirt = Convert.ToInt32(Case.Dirt);
-
-//             for(int i=0;i<5;i++){  
-//                 for(int j=0;j<5;j++){  
-//                     System.Random random = new System.Random();
-
-//                     int number = random.Next(0, 3); 
-//                     int[] choices = new int[3] { jewel, dirt , vide }; 
-//                     matrice[i, j] = choices[number]; //insert the random value
-//                     Console.Write(matrice[i, j]+" "); 
-
-//                 }  
-//                 Console.WriteLine();//new line at each row  
-
-//             }
+            cellsToSuck = new ArrayList();
+            cellsToCollect = new ArrayList();
             
-//             for(int i=0;i<5;i++){  
-//                 for(int j=0;j<5;j++){
-//                     if(matrice[i,j] == 0) {}                  
+            for (int i = 0; i < board.Length; ++i)
+            {
+                for (int j = 0; j < board[i].Length; ++j)
+                {
+                    foreach(var kvp in board[i][j]){ 
+                        int[] cell = new int[2];
+                        if(kvp.Key == Items.Dirt && board[i][j][Items.Dirt]){
+                            cell[0] = i;
+                            cell[1] = j;
+                            cellsToSuck.Add(cell);
+                        }
+                        
+                        if(kvp.Key == Items.Jewel && board[i][j][Items.Jewel]){
+                            cell[0] = i;
+                            cell[1] = j;
+                            cellsToCollect.Add(cell);
+                        }
+                    }
+                }
+            }
+        }
 
-//                     else if(matrice[i,j] == 1){
-//                         Console.WriteLine("il faut aspirer ");
-//                     }
-
-//                     else{
-//                         Console.WriteLine("il faut ramasser");
-//                     }
-//                 }
-//             }
-              
-//         }  
-//     }
+     }

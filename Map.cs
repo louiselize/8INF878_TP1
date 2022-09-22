@@ -10,8 +10,8 @@ public class Map
         public Map(int numberOfRows, int numberOfColumns, int robotPosX, int robotPosY) {
             //Map initialisation
             map = new Dictionary<String, bool>[numberOfRows][];
-            robotPosX = robotPosX;
-            robotPosY = robotPosY;
+            this.robotPosX = robotPosX;
+            this.robotPosY = robotPosY;
 
             for (int i = 0; i < numberOfRows; ++i)
             {

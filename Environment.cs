@@ -24,20 +24,17 @@ public class Environment
     {
         const int NUMBER_ROWS = 5;
         const int NUMBER_COLUMNS = 5;
-        const double DIRT_PERCENTAGE  = 0.1;
+        const double DIRT_PERCENTAGE  = 0.5;
 
         private int robotPosX = 0;
         private int robotPosY = 0;
         private int performance = 0;
-        
 
         private Map map;
 
         public Environment(){
             map = new Map(NUMBER_ROWS, NUMBER_COLUMNS, robotPosX, robotPosY);
         }
-
-
         
         //Choose which item to generate
         public void Generate(){
