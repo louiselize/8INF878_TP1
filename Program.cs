@@ -79,12 +79,12 @@ namespace ThreadingDemo
                 /*
                 -------- TO TEST CELL TO COLLECT AND SUCK ---------
                 Console.WriteLine("to collect");
-                foreach(int [] element in sensor.cellsToCollect){
+                foreach(int [] element in sensor.getCellsToCollect()){
                     Console.WriteLine(element[0] + " " + element[1]);
                 }
 
                 Console.WriteLine("to suck");
-                foreach(int [] element in sensor.cellsToSuck){
+                foreach(int [] element in sensor.getCellsToSuck()){
                     Console.WriteLine(element[0] + " " + element[1]);
                 }*/
 

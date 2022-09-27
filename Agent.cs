@@ -14,17 +14,54 @@ les buts ». Même si le problème est très simple, il est important que celui-
 Desires-Intentions »). Il devrait lui aussi être implémenté comme une boucle infinie respectant
 
 l’idée de base vue en cours (voir pseudo-code simple ci-dessous).
+
+
+------------ PSEUDO CODE -> AGENT BASÉ SUR LES BUTS ----------------------
+
+function Agent-But ([etat_env, but])
+
+ActionsPossibles = actionDeclanchable(etat_env)  //observe
+
+for i = 1 to taille(ActionsPossibles){
+if capable_atteindre(ActionsPossibles[i], but) 
+
+return ActionsPossibles[i]; 
+
+}
+
+returns an action
+
+-------------------------------------------------------------
+
 */
+
+using System.Collections;
+
 class Agent
     {
-        private Sensors sensor;
+        private Sensors sensor; //observe
+        private Effector effector; //choose an action
+        private Exploration exploration; //uninformed or informed
 
         public Agent(){
             sensor = new Sensors();
         }
 
+
+        /*public void PossibleActions(bool isInformed){   
+            exploration.Explore(sensor.GetCellToSuck(),sensor.GetCellToCollect());
+        }*/
+
         public Sensors GetSensor(){
             return sensor;
+        }
+
+        public Effector GetEffector(){
+            return effector;
+        }
+
+        public Exploration GetExploration(){
+            return exploration;
         }
 
     }

@@ -3,12 +3,13 @@ using System.Collections;
 
 public class Sensors  
      {  
-       public ArrayList cellsToSuck;
-       public ArrayList cellsToCollect;
+       private ArrayList cellsToSuck;
+       private ArrayList cellsToCollect;
 
        public Sensors(){
        }
 
+        //Add cells to suck and to collect in an array
         public void Observe(Map map){
             Dictionary<String, bool>[][] board = map.GetMap();
             
@@ -37,4 +38,12 @@ public class Sensors
             }
         }
 
+        public ArrayList GetCellToCollect(){
+            return cellsToCollect;
+        }
+
+        
+        public ArrayList GetCellToSuck(){
+            return cellsToSuck;
+        }
      }
