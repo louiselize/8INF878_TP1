@@ -6,12 +6,16 @@ public class Map
       
         private int robotPosX;
         private int robotPosY;
+        private int numberOfRows;  
+        private int numberOfColumns;
 
         public Map(int numberOfRows, int numberOfColumns, int robotPosX, int robotPosY) {
             //Map initialisation
             map = new Dictionary<String, bool>[numberOfRows][];
             this.robotPosX = robotPosX;
             this.robotPosY = robotPosY;
+            this.numberOfRows = numberOfRows;
+            this.numberOfColumns = numberOfColumns;
 
             for (int i = 0; i < numberOfRows; ++i)
             {
@@ -21,7 +25,7 @@ public class Map
                     {
                         {Items.Dirt, false},
                         {Items.Jewel, false},
-                        {Items.Robot, false},
+                        {Items.Robot, false}, //COMM: GROS ATTENTION JE SUIS PAS SUR DE MEN SERVIR !!!!! et je men suis pas servi partout ça va peut être dégagé et il y aura juste les variable posx et posy
 
                     };
                 }
@@ -119,6 +123,58 @@ public class Map
             return -1;                   
         }
 
+        //COMM: jsp si on diminue la perf quand on demande d'aller a gauche alors quon peut pas ou quoi
+        public bool Left(){
+            if(robotPosX>0){
+                robotPosX--;
+                return true;
+            }
+            return false;
+        }
+
+        public bool Right(){
+            if(robotPosX<numberOfColumns-1){
+                robotPosX++;
+                return true;
+            }
+            return false;
+        }
+
+
+        public bool Up(){
+            if(robotPosY<numberOfRows-1){
+                robotPosY++;
+                return true;
+            }
+            return false;
+        }
+
+        
+        public bool Down(){
+            if(robotPosY>0){
+                robotPosY--;
+                return true;
+            }
+            return false;
+        }
+
+
+        //return false if contains Jewel or Dirt
+        public bool IsMapClean(){
+            for (int i = 0; i < map.Length; ++i)
+            {
+                for (int j = 0; j < map[i].Length; ++j)
+                {
+                    foreach(var kvp in map[i][j]){
+                        if(kvp.Key != Items.Robot && map[i][j][kvp.Key]){
+                            return false;
+                        }
+                    } 
+                }
+            }
+            return true;
+        }
+
 
         public Dictionary<String, bool>[][] GetMap(){
             return map;
@@ -135,7 +191,6 @@ public class Map
         public void SetMap(int row, int column, String item, bool value){
             map[row][column][item] = value;
         }
-
 
 
     }

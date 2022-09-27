@@ -41,16 +41,32 @@ class Agent
     {
         private Sensors sensor; //observe
         private Effector effector; //choose an action
-        private Exploration exploration; //uninformed or informed
+        //private Exploration exploration; //uninformed or informed
 
         public Agent(){
             sensor = new Sensors();
+            effector = new Effector();
         }
 
+        public void AgentDoYourJob(Map map, Exploration exploration){
+            //1. Beliefs - Observation of the map
+            sensor.Observe(map); 
 
-        /*public void PossibleActions(bool isInformed){   
-            exploration.Explore(sensor.GetCellToSuck(),sensor.GetCellToCollect());
-        }*/
+            //2. Desires - look if goal is achieved or not
+            if(sensor.GetCellToCollect().Count!=0 || sensor.GetCellToSuck().Count!=0){
+                
+                Console.WriteLine("Agent : I explore");
+                //3. Intentions - do exploration to reach goal state
+                exploration.Explore(sensor.GetCellToSuck(),sensor.GetCellToCollect()); //update my state
+
+                //4. Just do it
+                effector.DoAction();
+            }
+
+            else{
+                Console.WriteLine("Agent : I'm waiting (my goal is reached for the moment)");
+            }
+        }
 
         public Sensors GetSensor(){
             return sensor;
@@ -60,8 +76,8 @@ class Agent
             return effector;
         }
 
-        public Exploration GetExploration(){
+        /*public Exploration GetExploration(){
             return exploration;
-        }
+        }*/
 
     }

@@ -5,6 +5,8 @@ using System;
 using static Environment;
 using static Map;
 using static Items;
+using static Uninformed;
+using static Informed;
 
 namespace ThreadingDemo
 {
@@ -61,10 +63,13 @@ namespace ThreadingDemo
             }
             Console.WriteLine("Method1 Ended using " + Thread.CurrentThread.Name);
         }
+
         static void AgentMethod(Object environment)
         {
             Environment ev = (Environment) environment;
             Agent agent = new Agent();
+            Uninformed uninformed = new Uninformed();
+            Informed informed = new Informed();
             Map map;
 
             while (true)
@@ -72,7 +77,40 @@ namespace ThreadingDemo
                 
                 Thread.Sleep(5000);
                 map = ev.GetMap();
-                agent.GetSensor().Observe(map); // Agent is observing environment;
+                //to test if map is cleaned
+                //Console.WriteLine("is cleaned" + map.IsMapClean());
+                
+                /*map.Suck(1,0);
+                map.Suck(2,0);
+                map.Suck(3,0);
+                map.Suck(4,0);
+                
+                map.Collect(1,0);
+                map.Collect(2,0);
+                map.Collect(3,0);
+                map.Collect(4,0);
+                
+                map.Suck(1,1);
+                map.Suck(2,1);
+                map.Suck(3,1);
+                map.Suck(4,1);
+                
+                map.Collect(1,1);
+                map.Collect(2,1);
+                map.Collect(3,1);
+                map.Collect(4,1);
+
+                map.Suck(1,2);
+                map.Suck(2,2);
+                map.Suck(3,2);
+                map.Suck(4,2);
+                
+                map.Collect(1,2);
+                map.Collect(2,2);
+                map.Collect(3,2);
+                map.Collect(4,2);*/
+
+                agent.AgentDoYourJob(map, uninformed);
                 
                 /*
                 -------- TO TEST CELL TO COLLECT AND SUCK ---------

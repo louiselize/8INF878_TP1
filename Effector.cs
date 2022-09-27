@@ -3,7 +3,7 @@ using System.Collections;
 class Effector
     {
         //idk quel parametre et tout mettre
-        public void ChooseAnAction(){
-
+        public void DoAction(){
+            Console.WriteLine("do action");
         }
     }
