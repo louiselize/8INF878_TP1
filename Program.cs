@@ -43,9 +43,10 @@ namespace ThreadingDemo
                 ev.Generate();
                 Map map = ev.GetMap();
                 /* ------ TO TEST SUCK AND COLLECT ------ */
+                /*
                 map.Suck(1,0);
                 map.Suck(2,0);
-                /*map.Suck(3,0);
+                map.Suck(3,0);
                 map.Suck(4,0);
                 
                 map.Collect(1,0);
@@ -110,7 +111,7 @@ namespace ThreadingDemo
                 map.Collect(3,2);
                 map.Collect(4,2);*/
 
-                agent.AgentDoYourJob(map, uninformed, ev);
+                agent.AgentDoYourJob(uninformed, ev);
 
                 
                 /*

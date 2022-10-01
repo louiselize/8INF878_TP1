@@ -48,8 +48,9 @@ class Agent
             effector = new Effector();
         }
 
-        public void AgentDoYourJob(Map map, Exploration exploration, Environment ev){
+        public void AgentDoYourJob(Exploration exploration, Environment ev){
             //1. Beliefs - Observation of the map
+            Map map = new Map(ev.GetMap()); //copy of the map
             sensor.Observe(map); 
 
             //2. Desires - look if goal is achieved or not
@@ -64,11 +65,12 @@ class Agent
                     Console.WriteLine(element[0] + " " + element[1]);
                 }*/
                 path = exploration.Explore(sensor.GetCellToSuck(),sensor.GetCellToCollect(),cell);
-                Console.WriteLine("coup à jouer :");
+                
+                /*Console.WriteLine("coup à jouer :");
                 foreach(int [] element in path){
                     Console.WriteLine(element[0] + " " + element[1]);
                 }
-                Console.WriteLine();
+                Console.WriteLine();*/
                 
                 //4. Just do it
                 effector.DoAction(path, sensor.GetCellToCollect(), sensor.GetCellToSuck(), ev);

@@ -34,6 +34,31 @@ public class Map
             map[robotPosX][robotPosY][Items.Robot] = true;
         }
 
+        public Map(Map mapIWantToCopy){
+            map = new Dictionary<String, bool>[mapIWantToCopy.GetNumberOfRows()][];
+            this.robotPosX = mapIWantToCopy.GetRobotXPosition();
+            this.robotPosY = mapIWantToCopy.GetRobotYPosition();
+            this.numberOfRows = mapIWantToCopy.GetNumberOfRows();
+            this.numberOfColumns = mapIWantToCopy.GetNumberOfColumns();
+
+            for (int i = 0; i < numberOfRows; ++i)
+            {
+                map[i] = new Dictionary<String, bool>[numberOfColumns];
+                for (int j = 0; j < numberOfColumns; ++j){
+                    map[i][j] = new Dictionary<String, bool>
+                    {
+                        {Items.Dirt, mapIWantToCopy.GetMap()[i][j][Items.Dirt]},
+                        {Items.Jewel, mapIWantToCopy.GetMap()[i][j][Items.Jewel]},
+                        {Items.Robot, mapIWantToCopy.GetMap()[i][j][Items.Robot]}, //COMM: GROS ATTENTION JE SUIS PAS SUR DE MEN SERVIR !!!!! et je men suis pas servi partout ça va peut être dégagé et il y aura juste les variable posx et posy
+
+                    };
+                } 
+            }
+            
+            map[robotPosX][robotPosY][Items.Robot] = true;
+        }
+        
+
         //Displaying the Map
         public void DisplayMap(){
             string row;
