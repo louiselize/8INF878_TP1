@@ -28,10 +28,10 @@ public class Map
                         {Items.Robot, false}, //COMM: GROS ATTENTION JE SUIS PAS SUR DE MEN SERVIR !!!!! et je men suis pas servi partout ça va peut être dégagé et il y aura juste les variable posx et posy
 
                     };
-                }
-                
-                map[robotPosX][robotPosY][Items.Robot] = true;
+                } 
             }
+            
+            map[robotPosX][robotPosY][Items.Robot] = true;
         }
 
         //Displaying the Map
@@ -85,6 +85,9 @@ public class Map
                 Console.WriteLine(row);
 
             }
+
+            Console.WriteLine("---------------");
+            Console.WriteLine();
             
         }
 
@@ -125,16 +128,16 @@ public class Map
 
         //COMM: jsp si on diminue la perf quand on demande d'aller a gauche alors quon peut pas ou quoi
         public bool Left(){
-            if(robotPosX>0){
-                robotPosX--;
+            if(robotPosY>0){
+                robotPosY--;
                 return true;
             }
             return false;
         }
 
         public bool Right(){
-            if(robotPosX<numberOfColumns-1){
-                robotPosX++;
+            if(robotPosY<numberOfColumns-1){
+                robotPosY++;
                 return true;
             }
             return false;
@@ -142,8 +145,8 @@ public class Map
 
 
         public bool Up(){
-            if(robotPosY<numberOfRows-1){
-                robotPosY++;
+            if(robotPosX>0){
+                robotPosX--;
                 return true;
             }
             return false;
@@ -151,8 +154,8 @@ public class Map
 
         
         public bool Down(){
-            if(robotPosY>0){
-                robotPosY--;
+            if(robotPosX<numberOfRows-1){
+                robotPosX++;
                 return true;
             }
             return false;
@@ -175,6 +178,10 @@ public class Map
             return true;
         }
 
+        public void Neighbour(int [] cell){
+            
+        }
+
 
         public Dictionary<String, bool>[][] GetMap(){
             return map;
@@ -183,9 +190,25 @@ public class Map
         public Dictionary<String, bool> GetCell(int row, int column){
             return map[row][column];
         }
+        
+        public int GetNumberOfRows(){
+            return numberOfRows;
+        }
+
+        public int GetNumberOfColumns(){
+            return numberOfColumns;
+        }
+
+        public int GetRobotXPosition(){
+            return robotPosX;
+        }
+
+        public int GetRobotYPosition(){
+            return robotPosY;
+        }
 
         public void SetMap(Dictionary<String, bool>[][] map){
-            map = map;
+            this.map = map;
         }
 
         public void SetMap(int row, int column, String item, bool value){

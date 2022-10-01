@@ -41,14 +41,14 @@ class Agent
     {
         private Sensors sensor; //observe
         private Effector effector; //choose an action
-        //private Exploration exploration; //uninformed or informed
+        private Exploration exploration; //uninformed or informed
 
         public Agent(){
             sensor = new Sensors();
             effector = new Effector();
         }
 
-        public void AgentDoYourJob(Map map, Exploration exploration){
+        public void AgentDoYourJob(Map map, Exploration exploration, Environment ev){
             //1. Beliefs - Observation of the map
             sensor.Observe(map); 
 
@@ -57,10 +57,19 @@ class Agent
                 
                 Console.WriteLine("Agent : I explore");
                 //3. Intentions - do exploration to reach goal state
-                exploration.Explore(sensor.GetCellToSuck(),sensor.GetCellToCollect()); //update my state
-
+                
+                int [] cell = new int [2] {map.GetRobotXPosition(),map.GetRobotYPosition()};
+                ArrayList path = new ArrayList();
+                /*foreach(int [] element in exploration.Neighbour(cell)){
+                    Console.WriteLine(element[0] + " " + element[1]);
+                }*/
+                path = exploration.Explore(sensor.GetCellToSuck(),sensor.GetCellToCollect(),cell);
+                foreach(int [] element in path){
+                    Console.WriteLine(element[0] + " " + element[1]);
+                }
+                
                 //4. Just do it
-                effector.DoAction();
+                effector.DoAction(path, sensor.GetCellToCollect(), sensor.GetCellToSuck(), ev);
             }
 
             else{
@@ -76,8 +85,8 @@ class Agent
             return effector;
         }
 
-        /*public Exploration GetExploration(){
+        public Exploration GetExploration(){
             return exploration;
-        }*/
+        }
 
     }

@@ -26,7 +26,7 @@ public class Environment
         const int NUMBER_COLUMNS = 5;
         const double DIRT_PERCENTAGE  = 0.5;
         //jsp trop si on met la pos du robot ici?
-        private int robotPosX = 0;
+        private int robotPosX = 2;
         private int robotPosY = 0;
         private int performance = 0;
 
@@ -68,7 +68,7 @@ public class Environment
             if(map.GetCell(i,j).TryGetValue(item, out value)){
                 if(!value){
                         map.SetMap(i,j,item,true);
-                        Console.WriteLine(item + " case " + i + " " + j);
+                        Console.WriteLine("Environnement : I've generated " + item + " at case (" + i + "," + j + ")");
                         map.DisplayMap();
                         return true;
                     }
@@ -84,7 +84,7 @@ public class Environment
 
         
         public int GetRobotXPosition(){
-            return robotPosX;
+            return map.GetRobotXPosition();
         }
 
         public void SetRobotXPosition(int X){
@@ -92,7 +92,7 @@ public class Environment
         }
 
         public int GetRobotYPosition(){
-            return robotPosY;
+            return map.GetRobotYPosition();
         }
 
         public void SetRobotYPosition(int Y){

@@ -45,20 +45,20 @@ namespace ThreadingDemo
                 /* ------ TO TEST SUCK AND COLLECT ------ */
                 map.Suck(1,0);
                 map.Suck(2,0);
-                map.Suck(3,0);
+                /*map.Suck(3,0);
                 map.Suck(4,0);
                 
                 map.Collect(1,0);
                 map.Collect(2,0);
                 map.Collect(3,0);
-                map.Collect(4,0);
+                map.Collect(4,0);*/
                 
                 
                 Console.WriteLine("Perf : " + ev.GetPerformance()); 
                 Console.WriteLine();  
                 Console.WriteLine();      
 
-                Thread.Sleep(5000);
+                Thread.Sleep(4000);
 
             }
             Console.WriteLine("Method1 Ended using " + Thread.CurrentThread.Name);
@@ -67,10 +67,10 @@ namespace ThreadingDemo
         static void AgentMethod(Object environment)
         {
             Environment ev = (Environment) environment;
+            Map map = ev.GetMap();
             Agent agent = new Agent();
-            Uninformed uninformed = new Uninformed();
-            Informed informed = new Informed();
-            Map map;
+            Uninformed uninformed = new Uninformed(map.GetNumberOfRows(),map.GetNumberOfColumns());
+            Informed informed = new Informed(map.GetNumberOfRows(),map.GetNumberOfColumns());
 
             while (true)
             {
@@ -110,7 +110,8 @@ namespace ThreadingDemo
                 map.Collect(3,2);
                 map.Collect(4,2);*/
 
-                agent.AgentDoYourJob(map, uninformed);
+                agent.AgentDoYourJob(map, uninformed, ev);
+
                 
                 /*
                 -------- TO TEST CELL TO COLLECT AND SUCK ---------
