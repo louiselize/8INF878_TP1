@@ -64,9 +64,11 @@ class Agent
                     Console.WriteLine(element[0] + " " + element[1]);
                 }*/
                 path = exploration.Explore(sensor.GetCellToSuck(),sensor.GetCellToCollect(),cell);
+                Console.WriteLine("coup à jouer :");
                 foreach(int [] element in path){
                     Console.WriteLine(element[0] + " " + element[1]);
                 }
+                Console.WriteLine();
                 
                 //4. Just do it
                 effector.DoAction(path, sensor.GetCellToCollect(), sensor.GetCellToSuck(), ev);

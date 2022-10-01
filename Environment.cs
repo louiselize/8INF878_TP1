@@ -27,7 +27,7 @@ public class Environment
         const double DIRT_PERCENTAGE  = 0.5;
         //jsp trop si on met la pos du robot ici?
         private int robotPosX = 2;
-        private int robotPosY = 0;
+        private int robotPosY = 2;
         private int performance = 0;
 
         private Map map;
