@@ -36,6 +36,7 @@ namespace ThreadingDemo
         static void EnvironmentMethod(Object environment)
         {
             Environment ev = (Environment) environment;
+            bool wait = true;
             Console.WriteLine("Method1 Started using " + Thread.CurrentThread.Name);
             while (true)
             {
@@ -55,11 +56,17 @@ namespace ThreadingDemo
                 map.Collect(4,0);*/
                 
                 
-                Console.WriteLine("Perf : " + ev.GetPerformance()); 
                 Console.WriteLine();  
                 Console.WriteLine();      
 
                 Thread.Sleep(4000);
+                if(!wait){
+                    ev.UpdatePerformance();
+                    Console.WriteLine("Perf : " + ev.GetPerformance()); 
+                    wait = true;
+                }
+
+                wait=false;
 
             }
             Console.WriteLine("Method1 Ended using " + Thread.CurrentThread.Name);

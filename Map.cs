@@ -203,8 +203,24 @@ public class Map
             return true;
         }
 
-        public void Neighbour(int [] cell){
+        public int CountNumberOfCleanCells(){
+            int cleanCellsCounter = 0 ;
+            for(int i = 0; i < map.Length; ++i){
+                for(int j = 0; j < map[i].Length; ++j){
+                    bool isCellEmpty = true;
+                    foreach(var kvp in map[i][j]){
+                        if(kvp.Key != Items.Robot && map[i][j][kvp.Key]){
+                            isCellEmpty =false;  
+                        }
+                    } 
+
+                    if(isCellEmpty){
+                        cleanCellsCounter++;
+                    }
+                }
+            }
             
+            return cleanCellsCounter;
         }
 
 

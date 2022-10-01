@@ -68,7 +68,7 @@ public class Environment
             if(map.GetCell(i,j).TryGetValue(item, out value)){
                 if(!value){
                         map.SetMap(i,j,item,true);
-                        Console.WriteLine("Environnement : I've generated " + item + " at case (" + i + "," + j + ")");
+                        Console.WriteLine("Environment : I've generated " + item + " at case (" + i + "," + j + ")");
                         map.DisplayMap();
                         return true;
                     }
@@ -76,6 +76,10 @@ public class Environment
    
             return false;
                 
+        }
+
+        public void UpdatePerformance(){
+            performance += GetMap().CountNumberOfCleanCells();
         }
 
         public Map GetMap(){
@@ -104,7 +108,7 @@ public class Environment
         }
 
         public void SetPerformance(int performance){
-            performance = performance;
+            this.performance = performance;
         }
         
 

@@ -11,24 +11,28 @@ class Effector
                 if(isTheCellAToTheLeftOfCellB(robotCell,cellInPath)){
                     Console.WriteLine("Sensor : Robot, go RIGHT!");
                     ev.GetMap().Right();
+                    ev.SetPerformance(ev.GetPerformance()-1); 
                 }
 
                 
                 if(isTheCellAToTheRightOfCellB(robotCell,cellInPath)){
                     Console.WriteLine("Sensor : Robot, go LEFT!");
                     ev.GetMap().Left();
+                    ev.SetPerformance(ev.GetPerformance()-1); 
                 }
 
                 
                 if(isTheCellAAboveCellB(robotCell,cellInPath)){
                     Console.WriteLine("Sensor : Robot, go DOWN!");
                     ev.GetMap().Down();
+                    ev.SetPerformance(ev.GetPerformance()-1);
                 }
 
                 
                 if(isTheCellABelowCellB(robotCell,cellInPath)){
                     Console.WriteLine("Sensor : Robot, go UP!");
-                    ev.GetMap().Up();
+                    ev.GetMap().Up();                    
+                    ev.SetPerformance(ev.GetPerformance()-1);
                 }
 
                 ev.GetMap().DisplayMap();
@@ -38,6 +42,7 @@ class Effector
                     if(cellToCollect[0] == cellInPath[0] && cellToCollect[1] == cellInPath[1]){
                         Console.WriteLine("Sensor : Robot, COLLECT cell (" + cellInPath[0] + "," + cellInPath[1] + ") !");
                         ev.GetMap().Collect(cellInPath[0],cellInPath[1]); 
+                        ev.SetPerformance(ev.GetPerformance()-1);
                         ev.GetMap().DisplayMap();
                     }
                 } 
@@ -48,6 +53,7 @@ class Effector
                     if(cellToSuck[0] == cellInPath[0] && cellToSuck[1] == cellInPath[1]){
                         Console.WriteLine("Sensor : Robot, SUCK cell (" + cellInPath[0] + "," + cellInPath[1] + ") !");
                         ev.GetMap().Suck(cellInPath[0],cellInPath[1]); 
+                        ev.SetPerformance(ev.GetPerformance()-1);
                         ev.GetMap().DisplayMap();
 
                     }
