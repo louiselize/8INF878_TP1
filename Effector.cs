@@ -1,10 +1,11 @@
 using System.Collections;
+using System.Threading;
 
 class Effector
     {
         public void DoAction(ArrayList path, ArrayList cellsToCollect, ArrayList cellsToSuck, Environment ev){
             foreach(int [] cellInPath in path){
-
+                Thread.Sleep(500); //wait 0.5 sec
                 int [] robotCell = new int [2] {ev.GetRobotXPosition(),ev.GetRobotYPosition()};
 
                 //Move the robot
@@ -44,6 +45,8 @@ class Effector
                         ev.GetMap().Collect(cellInPath[0],cellInPath[1]); 
                         ev.SetPerformance(ev.GetPerformance()-1);
                         ev.GetMap().DisplayMap();
+                        cellToCollect[0]=-1;
+                        cellToCollect[1]=-1;
                     }
                 } 
 
@@ -55,6 +58,8 @@ class Effector
                         ev.GetMap().Suck(cellInPath[0],cellInPath[1]); 
                         ev.SetPerformance(ev.GetPerformance()-1);
                         ev.GetMap().DisplayMap();
+                        cellToSuck[0]=-1;
+                        cellToSuck[1]=-1;
 
                     }
                 }

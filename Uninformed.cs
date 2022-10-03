@@ -21,6 +21,7 @@ class Uninformed : Exploration {
         possiblePathList  = array of possible path, ex : [[(1,0),(1,1),(1,2)],[(1,0),(0,0),(0,1)]];
         path = one of the possible path in possiblePathList, ex : [(1,0),(1,1),(1,2)];
         neighbourList = neighbour of the last cell of the path array (here, last cell is (1,2), then neighbourList is [(1,1),(1,3),(0,2),(2,2)])
+        Return the first Possible Path that we find in our tree
     */
     public ArrayList PossiblePath(ArrayList pathList, ArrayList cellsToCollect, ArrayList cellsToSuck){
         

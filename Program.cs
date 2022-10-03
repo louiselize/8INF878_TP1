@@ -59,7 +59,7 @@ namespace ThreadingDemo
                 Console.WriteLine();  
                 Console.WriteLine();      
 
-                Thread.Sleep(4000);
+                Thread.Sleep(2000);
                 if(!wait){
                     ev.UpdatePerformance();
                     Console.WriteLine("Perf : " + ev.GetPerformance()); 
@@ -117,8 +117,8 @@ namespace ThreadingDemo
                 map.Collect(2,2);
                 map.Collect(3,2);
                 map.Collect(4,2);*/
-
-                agent.AgentDoYourJob(uninformed, ev);
+                //ev.GetMap().GetMap()[2][2]["DIRT"] = true;
+                agent.AgentDoYourJob(informed, ev);
 
                 
                 /*

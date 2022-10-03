@@ -57,20 +57,23 @@ class Agent
             if(sensor.GetCellToCollect().Count!=0 || sensor.GetCellToSuck().Count!=0){
                 
                 Console.WriteLine("Agent : I explore");
+                map.DisplayMap();
                 //3. Intentions - do exploration to reach goal state
                 
                 int [] cell = new int [2] {map.GetRobotXPosition(),map.GetRobotYPosition()};
                 ArrayList path = new ArrayList();
+                
                 /*foreach(int [] element in exploration.Neighbour(cell)){
                     Console.WriteLine(element[0] + " " + element[1]);
                 }*/
+
                 path = exploration.Explore(sensor.GetCellToSuck(),sensor.GetCellToCollect(),cell);
                 
-                /*Console.WriteLine("coup à jouer :");
+                Console.WriteLine("coup à jouer :");
                 foreach(int [] element in path){
                     Console.WriteLine(element[0] + " " + element[1]);
                 }
-                Console.WriteLine();*/
+                Console.WriteLine();
                 
                 //4. Just do it
                 effector.DoAction(path, sensor.GetCellToCollect(), sensor.GetCellToSuck(), ev);

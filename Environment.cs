@@ -69,7 +69,7 @@ public class Environment
                 if(!value){
                         map.SetMap(i,j,item,true);
                         Console.WriteLine("Environment : I've generated " + item + " at case (" + i + "," + j + ")");
-                        map.DisplayMap();
+                        //map.DisplayMap();
                         return true;
                     }
                 }
