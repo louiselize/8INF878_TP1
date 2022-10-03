@@ -29,6 +29,13 @@ public class Environment
         private int robotPosX = 2;
         private int robotPosY = 2;
         private int performance = 0;
+        private int previousNumber;
+        private int iteration = 0;
+        private int numberOfIterationsForEachSearch = 1;
+        
+        private bool learningTime = false;
+        private bool informedSearchTime = false;
+        private bool uninformedSearchTime = true;
 
         private Map map;
 
@@ -104,6 +111,7 @@ public class Environment
         }
 
         public int GetPerformance(){
+            UpdatePerformance();
             return performance;
         }
 
@@ -111,6 +119,40 @@ public class Environment
             this.performance = performance;
         }
         
+        public int GetIteration(){
+            return iteration;
+        }
+
+        public void SetIteration(int iteration){
+            
+            this.iteration = iteration;
+
+            if(iteration == numberOfIterationsForEachSearch){
+                if(uninformedSearchTime){
+                    uninformedSearchTime = false;
+                    informedSearchTime = true;
+                }
+                else if(informedSearchTime){
+                    informedSearchTime = false;
+                    learningTime = true;
+                }
+
+                this.iteration = 0;
+            }
+        }
+        
+        public bool GetInformedSearchTime(){
+            return informedSearchTime;
+        }
+
+        public bool GetUninformedSearchTime(){
+            return uninformedSearchTime;
+        }
+
+        public bool GetLearningTime(){
+            return learningTime;
+        }
+
 
     
 }

@@ -223,6 +223,22 @@ public class Map
             return cleanCellsCounter;
         }
 
+        public void MakeMapClean(){
+            
+            for (int i = 0; i < numberOfRows; ++i)
+            {
+                map[i] = new Dictionary<String, bool>[numberOfColumns];
+                for (int j = 0; j < numberOfColumns; ++j){
+                    map[i][j] = new Dictionary<String, bool>
+                    {
+                        {Items.Dirt, false},
+                        {Items.Jewel, false},
+                        {Items.Robot, false}, 
+                    };
+                } 
+            }
+        }
+
 
         public Dictionary<String, bool>[][] GetMap(){
             return map;

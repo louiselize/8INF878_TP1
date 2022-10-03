@@ -4,6 +4,9 @@ public abstract class Exploration {
 
     protected int numberOfRows;
     protected int numberOfColumns;
+    protected int numberOfActions = -1;
+    protected int millisecondsToWait = 2000;
+    protected int numberOfIterationsToLearn = 3;
 
     public Exploration(int numberOfRows, int numberOfColumns){
         this.numberOfRows = numberOfRows;
@@ -46,7 +49,7 @@ public abstract class Exploration {
 
         return neighbourList;
     }
-    
+
     //return the last cell of an array
         public int [] LastCell(ArrayList arrayList){
             int index = 0;
@@ -62,4 +65,28 @@ public abstract class Exploration {
 
             return lastCell;
         }
+
+    public int GetNumberOfActions(){
+        return numberOfActions;
+    }
+    
+    public void SetNumberOfActions(int numberOfActions){
+        this.numberOfActions = numberOfActions;
+    }
+
+    public int GetMillisecondsToWait(){
+        return millisecondsToWait;
+    }
+    
+    public void SetMillisecondsToWait(int millisecondsToWait){
+        this.millisecondsToWait = millisecondsToWait;
+    }
+
+    public int GetNumberOfIterationsToLearn(){
+        return numberOfIterationsToLearn;
+    }
+    
+    public void SetNumberOfIterationsToLearn(int numberOfIterationsToLearn){
+        this.numberOfIterationsToLearn = numberOfIterationsToLearn;
+    }
 }

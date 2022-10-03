@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Collections.Generic;
+using System.Collections;
 using System.Threading;
 using System;
 using static Environment;
@@ -15,6 +16,7 @@ namespace ThreadingDemo
         static void Main(string[] args)
         {
             Environment ev = new Environment();
+            /*int iteration = 0;*/
 
             Console.WriteLine("Main Thread Started");
             //Creating Threads
@@ -30,6 +32,7 @@ namespace ThreadingDemo
             //Executing the methods
             t1.Start(ev);
             t2.Start(ev);
+    
             Console.WriteLine("Main Thread Ended");
             //Console.Read();
         }
@@ -57,16 +60,16 @@ namespace ThreadingDemo
                 
                 
                 Console.WriteLine();  
-                Console.WriteLine();      
+                //Console.WriteLine(); 
 
-                Thread.Sleep(2000);
-                if(!wait){
+                Thread.Sleep(6000);
+                /*if(!wait){
                     ev.UpdatePerformance();
                     Console.WriteLine("Perf : " + ev.GetPerformance()); 
                     wait = true;
                 }
 
-                wait=false;
+                wait=false;*/
 
             }
             Console.WriteLine("Method1 Ended using " + Thread.CurrentThread.Name);
@@ -79,12 +82,19 @@ namespace ThreadingDemo
             Agent agent = new Agent();
             Uninformed uninformed = new Uninformed(map.GetNumberOfRows(),map.GetNumberOfColumns());
             Informed informed = new Informed(map.GetNumberOfRows(),map.GetNumberOfColumns());
+            LearnFromInformed learnFromInformed = new LearnFromInformed(map.GetNumberOfRows(),map.GetNumberOfColumns());
+            int waitingTimeInterval = 10000;
+            int iterationForLearning = 0 ; //to have an average
+            ArrayList performanceList = new ArrayList();
+            int performanceMean = 0;
+
+            Thread.Sleep(1000);
 
             while (true)
             {
+                //Console.WriteLine((learnFromInformed.GetMillisecondsToWait()-waitingTimeInterval) / 10000);
                 
-                Thread.Sleep(5000);
-                map = ev.GetMap();
+                //map = ev.GetMap();
                 //to test if map is cleaned
                 //Console.WriteLine("is cleaned" + map.IsMapClean());
                 
@@ -118,7 +128,70 @@ namespace ThreadingDemo
                 map.Collect(3,2);
                 map.Collect(4,2);*/
                 //ev.GetMap().GetMap()[2][2]["DIRT"] = true;
-                agent.AgentDoYourJob(informed, ev);
+
+                if(ev.GetUninformedSearchTime()){
+                    Console.WriteLine("------------ UNINF -------------");
+                    agent.AgentDoYourJob(uninformed, ev);
+                }
+                
+                else if(ev.GetInformedSearchTime()){
+                    Console.WriteLine("------------ INF -------------");
+                    agent.AgentDoYourJob(informed, ev);
+                }
+
+                else{
+                    
+                    Console.WriteLine("------------ LEARN -------------");
+                    Console.WriteLine("Number of actions : " + learnFromInformed.GetNumberOfActions() + " | Number of milliseconds to wait : " + learnFromInformed.GetMillisecondsToWait());
+                    agent.AgentDoYourJob(learnFromInformed,ev);
+
+                    performanceList.Add(ev.GetPerformance());
+
+                    
+                    if(iterationForLearning==10){
+
+                        //calculates mean
+                        foreach(int perf in performanceList){
+                            performanceMean += perf;   
+                        }
+                        performanceMean = performanceMean / performanceList.Count;
+
+                        learnFromInformed.UpdatePerformanceData((learnFromInformed.GetMillisecondsToWait()-waitingTimeInterval) / 10000 ,performanceMean);
+
+                        //put value in their initial state
+                        performanceList = new ArrayList();
+                        performanceMean=0;
+                        iterationForLearning=0;
+
+                        //add one more action to do
+                        learnFromInformed.SetNumberOfActions(learnFromInformed.GetNumberOfActions()+1);
+
+                        //reinitialise our map
+                        ev.GetMap().MakeMapClean();
+
+                        //new line in our performance array (change of waiting time between actions)
+                        if(learnFromInformed.GetNumberOfIterationsToLearn()+1==learnFromInformed.GetNumberOfActions()){
+                            learnFromInformed.SetNumberOfActions(1);
+                            learnFromInformed.SetMillisecondsToWait(learnFromInformed.GetMillisecondsToWait()+waitingTimeInterval);
+
+                            //end of learning, array full
+                            if((learnFromInformed.GetMillisecondsToWait()-waitingTimeInterval) / 10000 == learnFromInformed.GetEndOfLearning()){
+                                Console.WriteLine("END OF LEARNING");
+                                return;
+                            }
+
+                        }
+
+                        learnFromInformed.DisplayPerformanceData();
+                        performanceList.Clear();
+                    }
+
+                    iterationForLearning++;
+                }
+                
+                
+                ev.SetIteration(ev.GetIteration()+1);     
+                //iteration++;
 
                 
                 /*

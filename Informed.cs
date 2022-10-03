@@ -51,7 +51,7 @@ class Informed : Exploration {
             cellsToCollect.Remove(nearestCellToCollectOrSuck);
             cellsToSuck.Remove(nearestCellToCollectOrSuck);
 
-            Console.WriteLine("Cells to suck or collect : " + nearestCellToCollectOrSuck[0] + " " + nearestCellToCollectOrSuck[1]);
+            //Console.WriteLine("Cells to suck or collect : " + nearestCellToCollectOrSuck[0] + " " + nearestCellToCollectOrSuck[1]);
             
             if(cell[0]==nearestCellToCollectOrSuck[0] && cell[1]==nearestCellToCollectOrSuck[1]){
                 path.Add(cell);
