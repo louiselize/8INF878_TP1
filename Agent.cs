@@ -50,7 +50,7 @@ class Agent
 
         public void AgentDoYourJob(Exploration exploration, Environment ev){
             //1. Beliefs - Observation of the map
-            Map map = new Map(ev.GetMap()); //copy of the map
+            Map map = new Map(ev.GetMap()); //copy of the map at the moment T
             sensor.Observe(map); 
 
             //2. Desires - look if goal is achieved or not
