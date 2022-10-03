@@ -10,9 +10,6 @@ class LearnFromInformed : Exploration {
         this.numberOfActions = 1;
         this.millisecondsToWait = 10000;
         performanceData = new ArrayList();
-        for(int i=0; i<endOfLearning; i++){
-            performanceData.Add(new ArrayList());
-        }
     }
 
     override public ArrayList Explore(ArrayList cellsToCollect, ArrayList cellsToSuck, int [] cell){
@@ -21,21 +18,22 @@ class LearnFromInformed : Exploration {
 
     }
 
-    public void UpdatePerformanceData(int indexOfIteration, int value){
-        ArrayList array = (ArrayList) performanceData[indexOfIteration];
-        array.Add(value);
+    public void UpdatePerformanceData(int value){
+        performanceData.Add(value);
+    }
+
+    public int CountItemsInPerformanceData(){
+        return performanceData.Count;
     }
 
     public void DisplayPerformanceData(){
-        String line;
-        foreach(ArrayList list in performanceData){
-            line = "";
-            foreach(int value in list){
+        String line = "";
+        foreach(int value in performanceData){
                 line+=value + " ";
-            }
-
-            Console.WriteLine(line);
         }
+
+        Console.WriteLine(line);
+    
     }
 
     public int GetEndOfLearning(){

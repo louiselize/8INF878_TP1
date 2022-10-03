@@ -84,9 +84,7 @@ namespace ThreadingDemo
             Informed informed = new Informed(map.GetNumberOfRows(),map.GetNumberOfColumns());
             LearnFromInformed learnFromInformed = new LearnFromInformed(map.GetNumberOfRows(),map.GetNumberOfColumns());
             int waitingTimeInterval = 10000;
-            int iterationForLearning = 0 ; //to have an average
-            ArrayList performanceList = new ArrayList();
-            int performanceMean = 0;
+            int iterationForLearning = 0 ;
 
             Thread.Sleep(1000);
 
@@ -142,48 +140,34 @@ namespace ThreadingDemo
                 else{
                     
                     Console.WriteLine("------------ LEARN -------------");
-                    Console.WriteLine("Number of actions : " + learnFromInformed.GetNumberOfActions() + " | Number of milliseconds to wait : " + learnFromInformed.GetMillisecondsToWait());
+                    Console.WriteLine("Number of actions : " + learnFromInformed.GetNumberOfActions());
                     agent.AgentDoYourJob(learnFromInformed,ev);
-
-                    performanceList.Add(ev.GetPerformance());
-
                     
                     if(iterationForLearning==10){
 
-                        //calculates mean
-                        foreach(int perf in performanceList){
-                            performanceMean += perf;   
-                        }
-                        performanceMean = performanceMean / performanceList.Count;
-
-                        learnFromInformed.UpdatePerformanceData((learnFromInformed.GetMillisecondsToWait()-waitingTimeInterval) / 10000 ,performanceMean);
+                        learnFromInformed.UpdatePerformanceData(ev.GetPerformance());
 
                         //put value in their initial state
-                        performanceList = new ArrayList();
-                        performanceMean=0;
                         iterationForLearning=0;
+                        ev.SetNumberOfActions(0);
+                        ev.SetPenalty(0);
 
                         //add one more action to do
                         learnFromInformed.SetNumberOfActions(learnFromInformed.GetNumberOfActions()+1);
 
                         //reinitialise our map
                         ev.GetMap().MakeMapClean();
+                        Thread.Sleep(4500);
 
-                        //new line in our performance array (change of waiting time between actions)
-                        if(learnFromInformed.GetNumberOfIterationsToLearn()+1==learnFromInformed.GetNumberOfActions()){
-                            learnFromInformed.SetNumberOfActions(1);
-                            learnFromInformed.SetMillisecondsToWait(learnFromInformed.GetMillisecondsToWait()+waitingTimeInterval);
 
-                            //end of learning, array full
-                            if((learnFromInformed.GetMillisecondsToWait()-waitingTimeInterval) / 10000 == learnFromInformed.GetEndOfLearning()){
-                                Console.WriteLine("END OF LEARNING");
-                                return;
-                            }
-
+                        //end of learning, array full
+                        if(learnFromInformed.CountItemsInPerformanceData() == learnFromInformed.GetEndOfLearning()){
+                            Console.WriteLine("END OF LEARNING");
+                            learnFromInformed.DisplayPerformanceData();
+                            return;
                         }
 
                         learnFromInformed.DisplayPerformanceData();
-                        performanceList.Clear();
                     }
 
                     iterationForLearning++;

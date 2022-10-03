@@ -57,7 +57,7 @@ class Agent
             if(sensor.GetCellToCollect().Count!=0 || sensor.GetCellToSuck().Count!=0){
                 
                 Console.WriteLine("Agent : I explore");
-                map.DisplayMap();
+                //map.DisplayMap();
                 //3. Intentions - do exploration to reach goal state
                 
                 int [] cell = new int [2] {map.GetRobotXPosition(),map.GetRobotYPosition()};
@@ -76,13 +76,16 @@ class Agent
                 Console.WriteLine();*/
                 
                 //4. Just do it
-                effector.DoAction(path, sensor.GetCellToCollect(), sensor.GetCellToSuck(), ev, exploration.GetNumberOfActions(),exploration.GetMillisecondsToWait());
+                effector.DoAction(path, sensor.GetCellToCollect(), sensor.GetCellToSuck(), ev, exploration.GetNumberOfActions(),2000);
             }
 
             else{
                 Console.WriteLine("Agent : I'm waiting (my goal is reached for the moment)");
                 Thread.Sleep(exploration.GetMillisecondsToWait()); 
             }
+
+            sensor.GetCellToCollect().Clear();
+            sensor.GetCellToSuck().Clear();
         }
 
 

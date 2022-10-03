@@ -29,7 +29,8 @@ public class Environment
         private int robotPosX = 2;
         private int robotPosY = 2;
         private int performance = 0;
-        private int previousNumber;
+        private int penalty = 0;
+        private int numberOfActions = 0;
         private int iteration = 0;
         private int numberOfIterationsForEachSearch = 1;
         
@@ -86,7 +87,7 @@ public class Environment
         }
 
         public void UpdatePerformance(){
-            performance += GetMap().CountNumberOfCleanCells();
+            performance = GetMap().CountNumberOfCleanCells() - numberOfActions - penalty;
         }
 
         public Map GetMap(){
@@ -151,6 +152,22 @@ public class Environment
 
         public bool GetLearningTime(){
             return learningTime;
+        }
+
+        public int GetNumberOfActions(){
+            return numberOfActions;
+        }
+
+        public void SetNumberOfActions(int numberOfActions){
+            this.numberOfActions = numberOfActions;
+        }
+
+        public int GetPenalty(){
+            return penalty;
+        }
+
+        public void SetPenalty(int penalty){
+            this.penalty = penalty;
         }
 
 
