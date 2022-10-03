@@ -8,16 +8,34 @@ class Informed : Exploration {
     }
 
     override public ArrayList Explore(ArrayList cellsToCollect, ArrayList cellsToSuck, int [] cell){
-        Console.WriteLine("explore informed");
         
-        /*ArrayList pathList = new ArrayList();
-        ArrayList path = new ArrayList();
-        path.Add(cell);
-        pathList.Add(path);*/
+        ArrayList pathList = new ArrayList();
+        pathList.Add(cell);
+
         ArrayList cellsToCollectCopy = new ArrayList(cellsToCollect);
         ArrayList cellsToSuckCopy = new ArrayList(cellsToSuck);
 
-        return GreedySearch(cell, cellsToCollectCopy, cellsToSuckCopy);
+        return FindPath(pathList, cellsToCollectCopy, cellsToSuckCopy);
+
+    }
+
+
+    public ArrayList FindPath(ArrayList pathList, ArrayList cellsToCollect, ArrayList cellsToSuck){
+        
+        if(cellsToCollect.Count == 0 && cellsToSuck.Count == 0){
+            return pathList;
+        }
+
+        int [] lastCell = LastCell(pathList);
+        
+        ArrayList pathBetweenActualCellAndNextOne = new ArrayList();
+        pathBetweenActualCellAndNextOne = GreedySearch(lastCell,cellsToCollect,cellsToSuck);
+
+        foreach(int [] cell in pathBetweenActualCellAndNextOne){
+            pathList.Add(cell);
+        }
+
+        return FindPath(pathList,cellsToCollect,cellsToSuck);
 
     }
 
@@ -33,7 +51,7 @@ class Informed : Exploration {
             cellsToCollect.Remove(nearestCellToCollectOrSuck);
             cellsToSuck.Remove(nearestCellToCollectOrSuck);
 
-            Console.WriteLine(nearestCellToCollectOrSuck[0] + " " + nearestCellToCollectOrSuck[1]);
+            Console.WriteLine("Cells to suck or collect : " + nearestCellToCollectOrSuck[0] + " " + nearestCellToCollectOrSuck[1]);
             
             if(cell[0]==nearestCellToCollectOrSuck[0] && cell[1]==nearestCellToCollectOrSuck[1]){
                 path.Add(cell);

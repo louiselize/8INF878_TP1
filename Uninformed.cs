@@ -12,7 +12,7 @@ class Uninformed : Exploration {
         ArrayList path = new ArrayList();
         path.Add(cell);
         pathList.Add(path);
-        return PossiblePath(pathList, cellsToCollect, cellsToSuck);
+        return FindPath(pathList, cellsToCollect, cellsToSuck);
 
     }
 
@@ -23,7 +23,7 @@ class Uninformed : Exploration {
         neighbourList = neighbour of the last cell of the path array (here, last cell is (1,2), then neighbourList is [(1,1),(1,3),(0,2),(2,2)])
         Return the first Possible Path that we find in our tree
     */
-    public ArrayList PossiblePath(ArrayList pathList, ArrayList cellsToCollect, ArrayList cellsToSuck){
+    public ArrayList FindPath(ArrayList pathList, ArrayList cellsToCollect, ArrayList cellsToSuck){
         
         ArrayList possiblePathList = new ArrayList();
         
@@ -60,25 +60,10 @@ class Uninformed : Exploration {
 
             }*/
 
-            return PossiblePath(possiblePathList, cellsToCollect, cellsToSuck);
+            return FindPath(possiblePathList, cellsToCollect, cellsToSuck);
 
         }
 
-        //return the last cell of an array
-        public int [] LastCell(ArrayList arrayList){
-            int index = 0;
-            int [] lastCell = new int [2];
-
-            foreach(int [] cell in arrayList){
-                    if(index==arrayList.Count-1){
-                        lastCell = cell;
-                        //Console.WriteLine("last cell " + lastCell[0] + lastCell[1]);
-                    }
-                    index ++;
-            }
-
-            return lastCell;
-        }
 
         public bool isAllCellsToCollectAndSuckInAPath(ArrayList path, ArrayList cellsToCollect, ArrayList cellsToSuck){
             bool isCellTheSame;

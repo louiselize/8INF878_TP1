@@ -46,4 +46,20 @@ public abstract class Exploration {
 
         return neighbourList;
     }
+    
+    //return the last cell of an array
+        public int [] LastCell(ArrayList arrayList){
+            int index = 0;
+            int [] lastCell = new int [2];
+
+            foreach(int [] cell in arrayList){
+                    if(index==arrayList.Count-1){
+                        lastCell = cell;
+                        //Console.WriteLine("last cell " + lastCell[0] + lastCell[1]);
+                    }
+                    index ++;
+            }
+
+            return lastCell;
+        }
 }
