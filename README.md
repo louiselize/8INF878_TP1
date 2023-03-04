@@ -2,7 +2,7 @@
 
 **Goal** 
 
-Implement an agent by using searching algorithm. 
+Implement an Goal-Oriented Agents using belief–desire–intention software model and searching algorithm. 
 This robot has to clean several room in a castle. Dirt and jewels are randomly generated and our robot has to think about the shortest way to collect jewel and suck dirt.
 
 **Solution**
