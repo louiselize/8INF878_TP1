@@ -15,7 +15,7 @@ The main objective of the project is to design an intelligent agent that can rea
  ## Collaborators
  
  - Yoann Ayoub : evaluate which algorithms are the best
- - Louise Lizé : implement all the code
+ - Louise Lizé : implement all the code (including environment generation)
  
 ## Further information
 
