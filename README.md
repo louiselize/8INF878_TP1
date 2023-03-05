@@ -2,7 +2,9 @@
 
 ## Goal 
 
-In this project, I have designed and implemented a goal-oriented agent using the BDI (Belief-Desire-Intention) model, along with informed and uninformed searching algorithms, to simulate a cleaning robot in a castle. The robot has to navigate through several rooms to clean up the dirt and collect jewels that are randomly generated. The main objective of the project is to design an intelligent agent that can reason about its goals and beliefs to make decisions on the shortest possible path to clean the castle efficiently.
+In this project, I have designed and implemented a goal-oriented agent using the BDI (Belief-Desire-Intention) model, along with informed and uninformed searching algorithms, to simulate a cleaning robot in a castle. The robot has to navigate through several rooms to clean up the dirt and collect jewels that are randomly generated.🧹🏰 
+
+The main objective of the project is to design an intelligent agent that can reason about its goals and beliefs to make decisions on the shortest possible path to clean the castle efficiently. 🤖
 
 ## Solution
 
